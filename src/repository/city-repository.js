@@ -6,6 +6,7 @@ class CityRepository {
       const city = await City.create({ name });
       return city;
     } catch (error) {
+      console.log("something went wrong in the repository layer");
       throw { error };
     }
   }
@@ -18,9 +19,14 @@ class CityRepository {
         },
       });
     } catch (error) {
+      console.log("something went wrong in the repository layer");
       throw { error };
     }
   }
+
+  async updateCity() {}
+
+  async getCity() {}
 }
 
 module.exports = CityRepository;
