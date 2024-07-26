@@ -1,4 +1,3 @@
-const { where } = require("sequelize");
 const { City } = require("../models/index");
 
 class CityRepository {
@@ -19,6 +18,7 @@ class CityRepository {
           id: cityId,
         },
       });
+      return true;
     } catch (error) {
       console.log("something went wrong in the repository layer");
       throw { error };
