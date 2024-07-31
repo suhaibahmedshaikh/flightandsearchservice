@@ -52,7 +52,6 @@ const get = async (req, res) => {
       err: {},
     });
   } catch (error) {
-    console.log(req.params.id);
     console.log(error);
     return res.status(500).json({
       data: {},
@@ -63,9 +62,29 @@ const get = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const cities = await cityService.getAllCities();
+    return res.status(201).json({
+      data: cities,
+      success: true,
+      message: "Successfully fetch all cities",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "not able to fetch all cities",
+      err: error,
+    });
+  }
+};
+
 const update = async (req, res) => {
   try {
-    const response = await cityService.getCity(req.params.id, req.data);
+    const response = await cityService.updateCity(req.params.id, req.body);
     return res.status(201).json({
       data: response,
       success: true,
@@ -88,4 +107,5 @@ module.exports = {
   destroy,
   get,
   update,
+  getAll,
 };
